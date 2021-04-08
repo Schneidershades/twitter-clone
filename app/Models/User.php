@@ -45,7 +45,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
+    public function following ()
     {
         return $this->belongsToMany(
             User::class, 'followers', 'user_id', 'following_id'
@@ -53,6 +53,7 @@ class User extends Authenticatable
     }
 
 
+    public function followers ()
     {
         return $this->belongsToMany(
             User::class, 'followers', 'following_id', 'user_id'
