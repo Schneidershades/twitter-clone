@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Follower;
+use App\Models\Tweet;
 
 class User extends Authenticatable
 {
@@ -42,4 +44,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function following()
+    {
+        return $this->belongsToMany(
+            User::class, 'followers', 'user_id', 'following_id'
+        );
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(
+            User::class, 'followers', 'following_id', 'user_id'
+        );
+    }
+
+    public function tweetsFromFollowing()
+    {
+        return $this->hasManyThrough(
+            Tweet::class, Followers::class, 'user_id', 'user_id', 'id', 'following_id'
+        );
+    }
 }
