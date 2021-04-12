@@ -8,8 +8,7 @@
 			:key="tweet.id"
 			:tweet="tweet"
 		/>
-
-		<div 
+		<div
 			v-if="tweets.length"
 			v-observe-visibility="{
 				callback: handleScrolledToBottomOfTimeline

@@ -1949,7 +1949,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2083,6 +2082,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 Vue.use(vuex__WEBPACK_IMPORTED_MODULE_0__.default);
 
 Vue.use(vue_observe_visibility__WEBPACK_IMPORTED_MODULE_1__.default);
+Vue.prototype.$user = User;
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -38766,22 +38766,43 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("form", { staticClass: "flex" }, [
+    _c("div", [
+      _c("img", {
+        staticClass: "w-12 rounded-full",
+        attrs: { src: _vm.$user.avatar }
+      })
+    ]),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("form", { staticClass: "flex" }, [
-      _c("div", [_vm._v("\n\t\tavatar\n\t")]),
+    return _c("div", { staticClass: "flex-grow" }, [
+      _c("textarea", {
+        staticClass:
+          "bg-gray-900 w-full outline-none text-gray-300 text-lg resize-none mb-2",
+        attrs: { placeholder: "What's happening?", autofocus: "" }
+      }),
       _vm._v(" "),
-      _c("div", { staticClass: "flex-grow" }, [
-        _c("textarea", {
-          staticClass:
-            "bg-gray-900 w-full outline-none text-gray-300 text-lg resize-none mb-2",
-          attrs: { placeholder: "What's happening?", autofocus: "" }
-        })
+      _c("div", { staticClass: "flex justify-between" }, [
+        _c("div", [_vm._v("\n\t\t\t\tactions\n\t\t\t")]),
+        _vm._v(" "),
+        _c("div", [
+          _c(
+            "button",
+            {
+              staticClass:
+                "bg-blue-500 rounded-full text-gray-300 text-center px-4 py-3 font-bold leading-none",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("\n\t\t\t\t\tTweet\n\t\t\t\t")]
+          )
+        ])
       ])
     ])
   }
