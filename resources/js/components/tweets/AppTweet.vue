@@ -1,6 +1,6 @@
 <template>
-	<div class="w-full inline-block p-4 border-gray-800 hover:bg-gray-800">
-		<div class="full w-full">
+	<div class="w-full inline-block p-4 border-b border-gray-800 hover:bg-gray-800">
+		<div class="flex w-full">
 			<div class="mr-3">
 				<img :src="tweet.user.avatar" class="w-12 rounded-full">
 			</div>

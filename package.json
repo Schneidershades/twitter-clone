@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "tailwind": "^4.0.0",
+        "vue-observe-visibility": "^1.0.0",
         "vuex": "^3.6.2"
     }
 }
