@@ -1,6 +1,6 @@
 <template>
 	<form class="flex">
-		<div>
+		<div class="mr-3">
 			<img :src="$user.avatar" class="w-12 rounded-full">
 		</div>
 		<div class="flex-grow">
@@ -12,7 +12,7 @@
 
 			<div class="flex justify-between">
 				<div>
-					actions
+					
 				</div>
 
 				<div>

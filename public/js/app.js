@@ -38767,7 +38767,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("form", { staticClass: "flex" }, [
-    _c("div", [
+    _c("div", { staticClass: "mr-3" }, [
       _c("img", {
         staticClass: "w-12 rounded-full",
         attrs: { src: _vm.$user.avatar }
@@ -38790,7 +38790,7 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c("div", { staticClass: "flex justify-between" }, [
-        _c("div", [_vm._v("\n\t\t\t\tactions\n\t\t\t")]),
+        _c("div"),
         _vm._v(" "),
         _c("div", [
           _c(
