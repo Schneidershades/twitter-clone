@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\TweetCollection;
 
+
 class TimelineController extends Controller
 {
 	public function __construct()
@@ -17,6 +18,7 @@ class TimelineController extends Controller
     {
     	$tweets = $request->user()
     		->tweetsFromFollowing()
+            ->latest()
     		->paginate(8);
 
     	return new TweetCollection($tweets);
