@@ -2050,8 +2050,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return "/api/timeline?page=".concat(this.page);
     }
   }),
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)({
+  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)({
     getTweets: 'timeline/getTweets'
+  })), (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapMutations)({
+    PUSH_TWEETS: 'timeline/PUSH_TWEETS'
   })), {}, {
     loadTweets: function loadTweets() {
       var _this = this;
@@ -2074,7 +2076,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   mounted: function mounted() {
+    var _this2 = this;
+
     this.loadTweets();
+    Echo["private"]("timeline.".concat(this.$user.id)).listen('.TweetWasCreated', function (e) {
+      _this2.PUSH_TWEETS([e]);
+    });
   }
 });
 
@@ -2245,7 +2252,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   broadcaster: 'pusher',
   key: "local",
   cluster: "mt1",
-  forceTLS: true,
+  forceTLS: false,
   disabledStats: true,
   wsPort: 6001,
   wsHost: window.location.hostname
@@ -2294,14 +2301,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   getters: {
     tweets: function tweets(state) {
-      return state.tweets;
+      return state.tweets.sort(function (a, b) {
+        return b.created_at - a.created_at;
+      });
     }
   },
   mutations: {
     PUSH_TWEETS: function PUSH_TWEETS(state, data) {
       var _state$tweets;
 
-      (_state$tweets = state.tweets).push.apply(_state$tweets, _toConsumableArray(data));
+      (_state$tweets = state.tweets).push.apply(_state$tweets, _toConsumableArray(data.filter(function (tweet) {
+        return !state.tweets.map(function (t) {
+          return t.id;
+        }).includes(tweet.id);
+      })));
     }
   },
   actions: {
