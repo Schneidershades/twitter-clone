@@ -7,21 +7,9 @@
 			<app-tweet-username :user="tweet.user" />
 			<p class="text-gray-300 whitespace-pre-wrap">{{ tweet.body }}</p>
 
-			<ul class="flex mt-4">
-				<li class="w-3/12">
-					<a href="">
-						icon
-					 	<span></span>
-					</a>
-				</li>
-
-				<li class="w-3/12">
-					 retweet
-				</li>
-				<li class="w-3/12">
-					 like
-				</li>
-			</ul>
+			<app-tweet-action-group 
+				:tweet="tweet"
+			/>
 		</div>
 	</div>
 </template>
