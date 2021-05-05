@@ -50,3 +50,19 @@ const app = new Vue({
     el: '#app',
     store
 });
+
+Echo.channel('tweets')
+	.listen('.TweetLikesWereUpdated', (e) =>{
+		// console.log('echo-inf', e.user_id, User.id)
+		if(e.user_id == User.id){
+			console.log('echo')
+			store.dispatch('likes/syncLike', e.id)
+		}
+
+		// store.dispatch('likes/syncLike', e.id)
+
+		store.commit('timeline/SET_LIKES', {
+			id : e.id,
+			count : e.count,
+		})
+	})

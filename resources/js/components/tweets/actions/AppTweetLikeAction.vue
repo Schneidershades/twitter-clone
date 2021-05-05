@@ -43,15 +43,17 @@
 
 		methods : {
 			...mapActions({
+				likeTweet: 'likes/likeTweet',
 				unlikeTweet: 'likes/unlikeTweet',
-				likeTweet: 'likes/likeTweet'
 			}),
 
 			likeOrUnlike () {
 				if(this.liked) {
+					console.log('liked')
 					this.unlikeTweet(this.tweet)
 					return
 				}
+				console.log('unliked')
 
 				this.likeTweet(this.tweet)
 			}
