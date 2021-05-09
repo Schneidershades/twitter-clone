@@ -38,7 +38,7 @@ export default {
 			await axios.delete(`/api/tweets/${tweet.id}/likes`)
 		},
 
-		async syncLike ({ commit, state }, id) {
+		syncLike ({ commit, state }, id) {
 			// does like exists
 			if (state.likes.includes(id)) {
 				console.log('remove')

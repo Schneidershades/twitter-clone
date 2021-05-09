@@ -55,16 +55,19 @@ const app = new Vue({
 
 Echo.channel('tweets')
 	.listen('.TweetLikesWereUpdated', (e) =>{
-		// console.log('echo-inf', e.user_id, User.id)
 		if(e.user_id == User.id){
-			console.log('echo')
 			store.dispatch('likes/syncLike', e.id)
 		}
 
-		// store.dispatch('likes/syncLike', e.id)
+		store.commit('timeline/SET_LIKES', e)
+	})
+	.listen('.TweetRetweetsWereUpdated', (e) =>{
+		if(e.user_id == User.id){
+			store.dispatch('retweets/syncRetweet', e.id)
+		}
 
-		store.commit('timeline/SET_LIKES', {
-			id : e.id,
-			count : e.count,
-		})
+		store.commit('timeline/SET_RETWEETS', e)
+	})
+	.listen('.TweetWasDeleted', (e) =>{
+		store.commit('timeline/POP_TWEET', e.id)
 	})

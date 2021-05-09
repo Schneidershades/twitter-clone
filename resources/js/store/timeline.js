@@ -24,19 +24,45 @@ export default {
 			)
 		},
 
+		POP_TWEET ( state, id ){
+			state.tweets = state.tweets.filter((t) => {
+				return t.id !== id
+			})
+		},
+
+
 		SET_LIKES ( state, { id, count }){
 			state.tweets = state.tweets.map((t) =>{
 				if (t.id === id) {
 					t.likes_count = count
 				}
 
-				if(get(t.original_tweet, 'id') === id){
+				if(get(t.original_tweet, 'id') == id){
 					t.original_tweet.likes_count = count
 				}
 
+
+				console.log(t, id, count, 'likes')
+
 				return t
 			})
-		}
+		},
+
+		SET_RETWEETS (state, { id, count }) {
+		    state.tweets = state.tweets.map((t) => {
+		      	if (t.id === id) {
+		        	t.retweets_count = count
+		      	}
+
+		      	if (get(t.original_tweet, 'id') === id) {
+		        	t.original_tweet.retweets_count = count
+		      	}
+
+		      	console.log(t, id, count, 'tweets')
+
+		      	return t
+		    })
+		},
 	},
 
 	actions: {
