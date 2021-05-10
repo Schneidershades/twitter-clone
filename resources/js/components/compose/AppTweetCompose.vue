@@ -9,10 +9,22 @@
 			/>
 
 			<div class="flex justify-between">
-				<div>
-				</div>
+				<ul class="flex items-center">
+					<li class="mr-4">
+						<app-tweet-compose-media-button
+							id="media-compose"
+							@selected="handleMediaSelected"
+						/>
+					</li>
+				</ul>
 
-				<div>
+				<div class="flex items-center justify-end">
+					<div>
+						<app-tweet-compose-limit
+							class="mr-2"
+							:body="form.body"
+						/>
+					</div>
 					<button
 						type="submit"
 						class="bg-blue-500 rounded-full text-gray-300 text-center px-4 py-3 font-bold leading-none"
@@ -32,7 +44,13 @@
 		data () {
 			return {
 				form : {
-					body : ''
+					body : '',
+					media : []
+				},
+
+				media : {
+					images: [],
+					video: null
 				}
 			}
 		},
@@ -42,6 +60,10 @@
 				await axios.post('/api/tweets', this.form)
 				this.form.body = ''
 			},
+
+			handleMediaSelected (files) {
+				console.log(files)
+			}
 		}
 	}
 </script>
