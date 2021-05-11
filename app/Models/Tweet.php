@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Like;
+use App\Models\TweetMedia;
 
 class Tweet extends Model
 {
@@ -36,5 +37,10 @@ class Tweet extends Model
     public function retweetedTweet()
     {
         return $this->hasOne(Tweet::class, 'original_tweet_id', 'id');
+    }
+
+    public function media ()
+    {
+        return $this->hasMany(TweetMedia::class);
     }
 }
