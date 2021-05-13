@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\MediaCollection;
 
 class TweetResource extends JsonResource
 {
@@ -22,6 +23,7 @@ class TweetResource extends JsonResource
             'likes_count' => $this->likes->count(),
             'retweets_count' => $this->retweets->count(),
             'user' => new UserResource($this->user),
+            'media' => new MediaCollection($this->media),
             'type' => $this->type,
             'created_at' => $this->created_at->timestamp,
         ];
